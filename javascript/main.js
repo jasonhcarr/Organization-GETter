@@ -1,21 +1,22 @@
-console.clear();
 
 /**
  Handle the form submit, preventing the default behavior and formatting the search string
  */
 $('form').submit(function(event) {
+    $('.org-container').remove();
     event.preventDefault();
-    infoCall();
+    var userName = $('.name-input').val();
+    infoCall(userName);
 });
 
 /**
  Create a function to send the organization info request, sending the results to the organization details constructor
  */
-function infoCall() {
+function infoCall(userName) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://api.github.com/users/jisaacks/orgs?access_token=713d6a7aa648b1809d08317e2bf172cb0b693af0",
+        "url": "https://api.github.com/users/" + userName + "/orgs",
         "method": "GET",
         "processData": false,
         "data": "{}"
